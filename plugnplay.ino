@@ -20,6 +20,9 @@ const int c_sensors = sizeof(sensors) / sizeof(OSDLsensor);
 const int c_actions = sizeof(actions) / sizeof(OSDLaction);
 EthernetServer server(80);
 
+String path = "";
+String page = "";
+
 void setup() {
   Serial.begin(9600);
   Ethernet.begin(mac);
@@ -37,8 +40,8 @@ void loop() {
   EthernetClient client = server.available();
   if (client) {
     boolean currentLineIsBlank = true;
-    String path = "";
-    String page = "";
+    path = "";
+    page = "";
     while (client.connected()) {
       if (client.available()) {
         char c = client.read();
